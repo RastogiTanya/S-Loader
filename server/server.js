@@ -1,33 +1,15 @@
-const express = require('express');
-const multer = require('multer');
-const cors = require('cors');
-
+require('dotenv').config();
+const express = require("express");
 const app = express();
+const initRoutes = require("./src/routes/files.routes");
 
-app.use(cors());
+global.__basedir = __dirname;
+
+app.use(express.urlencoded({ extended: true }));
+initRoutes(app);
 
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public')
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname)
-    }
-});
-
-const upload = multer({storage}).array('file');
-
-app.post('/upload', (req, res) => {
-    upload(req, res, (err) => {
-        if (err) {
-            return res.status(500).json(err)
-        }
-
-        return res.status(200).send(req.files)
-    })
-});
-
-app.listen(8000, () => {
-    console.log('App is running on port 8000')
+let port = 8080;
+app.listen(port, () => {
+  console.log(`Running at localhost:${port}`);
 });
