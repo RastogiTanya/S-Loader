@@ -1,17 +1,24 @@
-import axios from 'axios';
 import {useState} from 'react';
 import {toast} from 'react-toastify'
 import './style.css';
+import FileDetails from '../FileDetails';
 
 const EXTENSIONS = ['xlsx','xls','csv'];
 
 export const FileUploader = ()=>{
-    const onInputChange = (e)=>{
-        setEnteredText(e.target.value)
-       setFiles(e.target.files)
-    }
+    
     const [files,setFiles] = useState([]);
-    const [enteredText, setEnteredText] = useState(''); 
+    const [enteredText, setEnteredText] = useState('');
+    
+    const onInputChange = (e)=>{
+        if(!(e.target.files.length)) return; 
+        if(!(getExtension(e.target.files[0]))) {
+            toast.error("Upload error");
+            return;
+        }
+        setEnteredText(e.target.value);
+        setFiles((files) => [...files, e.target.files[0]]);
+    }
 
     const getExtension=(file)=>{
         const parts = file.name.split('.');
@@ -20,54 +27,29 @@ export const FileUploader = ()=>{
         return EXTENSIONS.includes(extension)
     }
 
-    const onSubmit = (e)=>{
-        e.preventDefault();
-
-        const data = new FormData();
-        var ext = true;
-        for(let i =0;i<files.length;i++){
-            ext = ext && getExtension(files[i])
-        }
-        if(ext && files.length){
-            for(let i =0;i<files.length;i++){
-                data.append('file',files[i]);
-            }
     
-            
-            axios.post("//localhost:8000/upload",data).then((res)=>{
-                toast.success("Upload Success");
-               
-            })
-            .catch((e)=>{
-                // console.log("Error ",e);
-                toast.error("Upload error")
-            })
-        }
-        else{
-            alert('Invalid File Format')
-        }
-        setEnteredText('');
-    };
 
     return(
-        <form method="post" action="#" id="#" onSubmit={onSubmit}>
-           
-              
-              
-              
-        <div class="form-group files">
-          <label>Upload Your File </label>
-          <input type="file" 
-          
-            class="form-control"
-            onChange = {onInputChange} 
-            value={enteredText}
-            multiple/>
+        <div>
+            <form className="flex justify-center align-middle" method="post" action="#" id="#">
+                <div>
+                    <label>Upload Your File</label>
+                </div>
+                <div>
+                    <input type="file" 
+                    className="ml-5 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"
+                    onChange = {onInputChange} 
+                    value={enteredText}
+                    multiple/>
+                </div>
+                <div className='flex-col'>{ files.length === 0?<div></div>:
+                    files.map((file, idx) => {
+                        return (<div key={idx}>
+                            <FileDetails file={file} />
+                        </div>)
+                    })
+                }</div>
+            </form>
         </div>
-        
-        <button>Submit</button>
-        </form>
-        
     )
-   
 }
