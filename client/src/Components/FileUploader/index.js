@@ -42,7 +42,7 @@ export const FileUploader = ()=>{
                     value={enteredText}
                     multiple/>
                 </div>
-                <div className='flex-col'>{ files.length === 0?<div></div>:
+                <div className='flex flex-col'>{ files.length === 0?<div></div>:
                     files.map((file, idx) => {
                         return (<div key={idx}>
                             <FileDetails file={file} />
