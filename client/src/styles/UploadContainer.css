@@ -1,0 +1,26 @@
+.upload-container {
+    margin-top: 5%;
+    width: 90%;
+    height: 17rem;
+    border-style: solid;
+    border-width: 0.12rem;
+    border-radius: 0.4rem;
+    background-color: #FAFAFA;
+    justify-content: center;
+    align-items: center;
+    border-color: #333333;
+}
+
+
+.upload-container-header-text {
+    padding-top: 2.2%;
+    width: 70%;
+    font-size: 1.34rem;
+    margin: 0 auto;
+    font-weight: 600;
+}
+
+.upload-container-footer-text {
+    padding-top: 0%;
+    font-size: 0.8rem;
+}

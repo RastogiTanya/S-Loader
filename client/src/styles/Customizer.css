@@ -1,0 +1,38 @@
+.customizer-container {
+    width: 30%;
+    height: calc(100% - 30px);
+    background-color: #fff;
+}
+
+.customizer-summary {
+    font-size: 1.04rem;
+    font-weight: 640;
+    padding: 2%;
+    padding-left: 0;
+    cursor: pointer;
+    height: fit-content;
+}
+
+.customizer-detail {
+    width: 100%;
+    position: relative;
+}
+
+.has-header-checkbox {
+    padding-left: 4%;
+}
+
+.column-header-checkboxes {
+    padding-left: 4%;
+    max-height: 15rem;
+    overflow-y: scroll;
+    display: grid;
+}
+
+.remove-duplicate-checkboxes{
+    padding-left: 4%;
+    max-height: 15rem;
+    display: grid;
+    overflow-y: scroll;
+    margin-bottom: 0.4rem;
+}
