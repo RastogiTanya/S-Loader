@@ -2,9 +2,9 @@ const { CreateTable } = require('./CreateTable.js');
 const { MakeEntries } = require('./MakeEntries.js');
 
 
-async function addToDatabase(df, tableName) {
+async function addToDatabase(df, tableName, key) {
 
-    let table = await CreateTable(df.names().values, df.dtypes().c('dtype').values, tableName);
+    let table = await CreateTable(df.names().values, df.dtypes().c('dtype').values, tableName, key);
     
     if(!table.success)
         return false;

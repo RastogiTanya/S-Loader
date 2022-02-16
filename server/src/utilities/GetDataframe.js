@@ -6,10 +6,10 @@ const { withoutHeaders } = require('./withoutHeaders.js');
 const { extractDF } = require('./extractDF.js');
 const { fixDF } = require('./fixDF.js');
 
-async function GetDataFrame(file, hasHeaders, columns) {
+async function GetDataFrame(filename, hasHeaders, columns) {
     try {
 
-        let path = __basedir + "/resources/static/assets/uploads/" + file.filename;
+        let path = __basedir + "\\resources\\static\\assets\\uploads\\" + filename;
         let df;
 
         var buf = fs.readFileSync(path);
