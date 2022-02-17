@@ -19,9 +19,9 @@ function FileManipulator({files}) {
     });
     
 
-    axios.post("http://localhost:8080/api/excel/upload/", formData
+    axios.post("/api/excel/upload/", formData
     ).then(() => {
-        axios.post("http://localhost:8080/api/excel/to-database/", formRequest
+        axios.post("/api/excel/to-database/", formRequest
         ).then(() => window.location.reload())
         .catch(error => console.log(error));
     })
