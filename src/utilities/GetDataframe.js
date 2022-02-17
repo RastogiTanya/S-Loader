@@ -9,7 +9,7 @@ const { fixDF } = require('./fixDF.js');
 async function GetDataFrame(filename, hasHeaders, columns) {
     try {
 
-        let path = __basedir + "\\resources\\static\\assets\\uploads\\" + filename;
+        let path = __basedir + "/resources/static/assets/uploads/" + filename;
         let df;
 
         var buf = fs.readFileSync(path);
