@@ -9,7 +9,6 @@ async function MakeEntries(df, tableName) {
         })
         entries[index] = temp;
     })
-    console.log(entries);
     let query_statement = `INSERT INTO ${tableName} VALUES ?`;
 
     connection.query(query_statement, [entries], (error, result) => {
