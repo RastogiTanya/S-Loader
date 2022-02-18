@@ -1,14 +1,15 @@
 .customizer-container {
-    width: 30%;
-    height: calc(100% - 30px);
+    height: calc(100%-30px);
     background-color: #fff;
+    display: grid;
+    grid-template-columns: 0.5fr 1.1fr 1.1fr;
 }
 
 .customizer-summary {
     font-size: 1.04rem;
     font-weight: 640;
     padding: 2%;
-    padding-left: 0;
+    padding-left: 2%;
     cursor: pointer;
     height: fit-content;
 }
@@ -25,14 +26,23 @@
 .column-header-checkboxes {
     padding-left: 4%;
     max-height: 15rem;
-    overflow-y: scroll;
+    overflow-x: scroll;
     display: grid;
+    padding-bottom: 0.4rem;
 }
 
 .remove-duplicate-checkboxes{
     padding-left: 4%;
     max-height: 15rem;
     display: grid;
-    overflow-y: scroll;
-    margin-bottom: 0.4rem;
+    overflow-x: scroll;
+    padding-bottom: 0.4rem;
+}
+
+.customizer-columns-section {
+    border-right: solid 0.15rem;
+}
+
+.customizer-headers-section {
+    border-right: solid 0.15rem;
 }

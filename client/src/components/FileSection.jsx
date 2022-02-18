@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import XLSX from 'xlsx';
 import Customizer from './Customizer';
-import Viewer from './Viewer';
 
 import "../styles/FileSection.css"
 
@@ -11,7 +10,6 @@ function FileSection({file, formReq}) {
   const [ hasHeaders, setHasHeaders] = useState(true);
   const [ columnNames, setColumnNames ] = useState(null);
   const [ removeDuplicates, setRemoveDuplicates ] = useState(null);
-  const [ fileData, setFileData] = useState(null);
   const [ flag, setFlag ] = useState(true);
   const [ inUseColumns, setInUseColumns ] = useState(null);
   const [ initialColumnNames, setInitialColumnNames ] = useState(null);
@@ -26,11 +24,10 @@ function FileSection({file, formReq}) {
       const wsname = wb.SheetNames[0];
       const ws = wb.Sheets[wsname];
 
-      const data = XLSX.utils.sheet_to_json(ws);
-      setColumnNames(Object.keys(data[0]));
+      const data = XLSX.utils.sheet_to_json(ws, {header: 1});
+      setColumnNames(data[0]);
       setInUseColumns(columnNames);
       setInitialColumnNames(columnNames);
-      setFileData(data);
 
       formReq[file.name] = {
         columns : columnNames,
@@ -50,7 +47,6 @@ function FileSection({file, formReq}) {
 
   return (
     <div className='file-section-container'>
-        <Viewer inUseColumns={inUseColumns} headers={hasHeaders} fileData={fileData}/>
         <Customizer formReq={formReq} fileName={file.name} initialColumnNames={initialColumnNames} columns={columnNames} inUseColumns={inUseColumns} setColumns={setColumnNames} setInUseColumns={setInUseColumns} duplicates={removeDuplicates} setDuplicates={setRemoveDuplicates} setHeaders={setHasHeaders}/>
     </div>
   )

@@ -63,7 +63,7 @@ function Customizer({formReq, fileName, initialColumnNames, columns, inUseColumn
 
   return (
     <div className='customizer-container'>
-      <details className='customizer-detail' open>
+      <details className='customizer-detail customizer-headers-section' open>
         <summary className='customizer-summary'>
           Headers
         </summary>
@@ -71,7 +71,7 @@ function Customizer({formReq, fileName, initialColumnNames, columns, inUseColumn
           <FormControlLabel control={<Checkbox defaultChecked />} onChange={handleHeaderToggle} label={<span style={{ fontSize: '0.94rem' }}>Has headers</span>}/>
         </FormGroup>
       </details>
-      <details className='customizer-detail' open>
+      <details className='customizer-detail customizer-columns-section' open>
         <summary className='customizer-summary'>
           Columns
         </summary>

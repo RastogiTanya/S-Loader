@@ -1,5 +1,4 @@
 .file-section-container {
     width: 100%;
-    display: flex;
-    flex: 1;
+    height: fit-content;
 }
