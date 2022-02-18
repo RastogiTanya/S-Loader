@@ -7,7 +7,7 @@ async function withHeaders(sheet) {
     let headers = [];
     let data = [];
 
-    var XL_row_object = XLSX.utils.sheet_to_json(sheet);
+    var XL_row_object = XLSX.utils.sheet_to_json(sheet, {defval:null});
             
     if(XL_row_object.length) {
         headers = Object.keys(XL_row_object[0]);

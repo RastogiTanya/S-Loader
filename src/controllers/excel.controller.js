@@ -20,7 +20,8 @@ const uploader = async (req, res) => {
         df = await RemoveDuplicates(df, value.removeDuplicates);
       }
 
-      const tableName = value.tableName ? value.tableName : `${path.parse(filename).name.replace(/ /g,'_')}${Date.now()}`;
+      let tableName = value.tableName ? value.tableName : `${path.parse(filename).name.replace(/ /g,'_')}${Date.now()}`;
+      tableName = tableName.toLowerCase().replace(/[^a-zA-Z0-9]/g, '').replace(/ /gi,'_');
       const response = await addToDatabase(df, tableName, value.removeDuplicates);
       if(!response) {
         res.status(500).send("An error occured");

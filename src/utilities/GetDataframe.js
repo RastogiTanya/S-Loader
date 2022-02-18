@@ -13,7 +13,7 @@ async function GetDataFrame(filename, hasHeaders, columns) {
         let df;
 
         var buf = fs.readFileSync(path);
-        var workbook = XLSX.read(buf, {type:'buffer', raw:true});
+        var workbook = XLSX.read(buf, {type:'buffer'});
 
         for(let i=0; i<1; i++) {
 
